@@ -16,14 +16,14 @@ const [data,setData] = useState({
     }
     return (
         <div className="flex flex-col px-2 py-4 items-center mt-10">
-            <div className="font-bold text-2xl mb-2">Sign Up <p className="font-medium">Create your steeze link</p></div>
-            <div className="flex justify-evenly items-center gap-2 mt-2 mb-3 shadow-gray-400 shadow-sm w-25 bg-zinc-300 p-2 rounded-md "> {<AiFillCrown/>}boostmysteez.io/<input className="page-link" placeholder="Nickname" readOnly value={data.nickname}/></div>
-            <div className="bg-white shadow-md shadow-gray-400/40 px-5 py-3 rounded-md">
+            <div className="font-bold text-white text-2xl mb-2">Sign Up <p className="font-medium">Create your steeze link</p></div>
+            <div className="flex items-center mt-2 mb-3  w-25 bg-zinc-300 p-2 rounded-md "> <span className="crown">{<AiFillCrown/>}</span>boostmysteez.io/<span className="page-link" placeholder="Nickname" readOnly>{data.nickname}</span></div>
+            <div className="bg-gradient-to-r from-purple-200 to-amber-200 ... bg-opacity-60 backdrop-filter backdrop-blur-lg  px-5 py-3 rounded-md">
                 <form className=" flex flex-col " onSubmit={signupUser}>
                     <label htmlFor="name">Nickname</label>
                     <input
-                        className="text-sm p-2 rounded-md"
-                        type="text"
+                        className="text-sm p-2 focus:outline-none focus:border-amber-400 rounded-md"
+                        type="name"
                         id="name"
                         placeholder="Enter Your Nickname"
                         value={data.nickname}
@@ -32,8 +32,8 @@ const [data,setData] = useState({
                     />
                     <label className="mt-2" htmlFor="email">Email</label>
                     <input
-                        className="text-sm p-2 rounded-md"
-                        type="text"
+                        className="text-sm focus:outline-none focus:border-amber-400 p-2 rounded-md"
+                        type="email"
                         id="email"
                         placeholder="email"
                         required
@@ -42,7 +42,7 @@ const [data,setData] = useState({
                     />
                     <label className="mt-2" htmlFor="password">Password</label>
                     <input
-                        className="text-sm p-2 rounded-md"
+                        className="text-sm focus:outline-none focus:border-amber-400 p-2 rounded-md"
                         type="password"
                         id="password"
                         placeholder="password"
