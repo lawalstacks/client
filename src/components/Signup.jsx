@@ -13,6 +13,7 @@ const [data,setData] = useState({
 
     const signupUser = (e)=>{
       e.preventDefault();
+      axio.post('/signup')
     }
     return (
         <div className="flex flex-col px-2 py-4 items-center mt-10">

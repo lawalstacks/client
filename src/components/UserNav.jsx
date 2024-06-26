@@ -25,6 +25,10 @@ const UserNav = () => {
                     content
                 </NavLink>
                 <NavLink
+                    to='/Followers'
+                    style={({ isActive }) => {
+                        return isActive ? { color: "plum", font:"bold"} : {};
+                    }}
                     className="hover:bg-gradient-to-r from-zinc-800 ... hover:text-white hover:scale-90 p-2 active:bg-zinc-800 rounded-md transition-all">Followers
                 </NavLink>
                 <NavLink
