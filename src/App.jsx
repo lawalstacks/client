@@ -8,7 +8,7 @@ import Followers from "./pages/Dashboard/main/Followers.jsx"
 import {Routes,Route} from "react-router-dom";
 import axios from "axios";
 
-axios.defaults.baseURL= "https://localhost:5000/api";
+axios.defaults.baseURL= "https://localhost:5000/";
 axios.defaults.withCredentials = "true";
 
 function App(){
