@@ -7,7 +7,7 @@ const DashboardLayout = () => {
         <>
             <div className='mt-10 flex px-10'>
                <UserNav/>
-                <main className="lg:ml-10">
+                <main className="lg:ml-20">
                     <Outlet/>
                 </main>
             </div>

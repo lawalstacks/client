@@ -9,15 +9,15 @@ const UserNav = () => {
                 className='bg-white flex-col justify-center items-start lg:flex hidden transition-all border-2 border-white-500  w-50 rounded-md text-black p-5 gap-1'>
 
                 <p className="pl-2 text-gray-500">Main</p>
-                <NavLink to='/'
-                         style={({ isActive }) => {
-                             return isActive ? { color: "plum", font:"bold"} : {};
+                <NavLink to='/dashboard'
+                         style={({ Active }) => {
+                             return Active ? { color: "plum", font:"bold"} : {};
                          }}
-                    className="hover:bg-gradient-to-r from-zinc-800 ... hover:text-white hover:scale-90 p-2 active:bg-zinc-800 rounded-md transition-all">My
-                    Dashboard
+                    className="hover:bg-gradient-to-r from-zinc-800 ... hover:text-white hover:scale-90 p-2 active:bg-zinc-800 rounded-md transition-all">
+                    Overview
                 </NavLink>
                 <NavLink
-                    to='/Publish'
+                    to='Publish'
                     style={({ isActive }) => {
                         return isActive ? { color: "plum", font:"bold"} : {};
                     }}
@@ -25,7 +25,7 @@ const UserNav = () => {
                     content
                 </NavLink>
                 <NavLink
-                    to='/Followers'
+                    to='Followers'
                     style={({ isActive }) => {
                         return isActive ? { color: "plum", font:"bold"} : {};
                     }}
