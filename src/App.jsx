@@ -27,8 +27,8 @@ function App(){
             <Routes>
               <Route path='/:username' element ={<UserPage/>}/>
               <Route path='/' element={<Home/>}/>
-              <Route path="/dashboard" element={user? <DashboardLayout/>: <Navigate to="/auth"/>}>
-                <Route index element={<Dashboard/>}/>
+              <Route element={user? <DashboardLayout/>: <Navigate to="/auth"/>}>
+                <Route path="dashboard" index element={<Dashboard/>}/>
                 <Route path="publish" element={<Publish/>}/>
                 <Route path="followers" element={<Followers/>}/>
               </Route>
