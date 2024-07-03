@@ -10,8 +10,8 @@ const UserNav = () => {
 
                 <p className="pl-2 text-gray-500">Main</p>
                 <NavLink to='/dashboard'
-                         style={({ Active }) => {
-                             return Active ? { color: "plum", font:"bold"} : {};
+                         style={({ isActive }) => {
+                           return isActive ? { color: "plum", font:"bold"} : {};
                          }}
                     className="hover:bg-gradient-to-r from-zinc-800 ... hover:text-white hover:scale-90 p-2 active:bg-zinc-800 rounded-md transition-all">
                     Overview
