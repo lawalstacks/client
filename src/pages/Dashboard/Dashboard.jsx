@@ -6,7 +6,7 @@ const Dashboard = () => {
         <div className='flex  items-center font-normal flex-col rounded-md'>
             <div>
                 Overview
-                <div className="font-medium flex text-xl pb-5 text-white">Welcome to your dashboard, Teekzel 👋
+                <div className="text-2xl pb-5 text-white">Welcome to your dashboard, Teekzel 👋
                 </div>
                 <div className="flex  lg:justify-evenly flex-col gap-10 lg:flex-row h-38 ">
                     <div
@@ -19,7 +19,7 @@ const Dashboard = () => {
                         <div className="flex items-center ml-10">Share 🔗</div>
                     </div>
                     <div
-                        className="bg-gradient-to-r from-amber-200 to... gap-4 border border-shadow bg-opacity-60 backdrop-filter ml-6 lg:h-full backdrop-blur-xl w-24*2 p-2 gap-2 md:p-5 rounded-md bg-zinc-100">
+                        className="h-full bg-gradient-to-r from-amber-200 to... gap-4 border border-shadow bg-opacity-60 backdrop-filter ml-6 lg:h-full backdrop-blur-xl w-24*2 p-2 gap-2 md:p-5 rounded-md bg-zinc-100">
                         <p>Total Earnings</p>
                         <p className="font-bold flex items-center text-black text-5xl">$0<span
                             className="pl-3 align-center text-sm text-Quicksand font-bold text-cyan-900 italic">x5000 Steeze <span
