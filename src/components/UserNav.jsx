@@ -9,7 +9,7 @@ const UserNav = () => {
                 className='bg-white flex-col justify-center items-start lg:flex hidden transition-all border-2 border-white-500  w-50 rounded-md text-black p-5 gap-1'>
 
                 <p className="pl-2 text-gray-500">Main</p>
-                <NavLink to='/dashboard'
+                <NavLink to='/overview'
                          style={({ isActive }) => {
                            return isActive ? { color: "plum", font:"bold"} : {};
                          }}

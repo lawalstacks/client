@@ -37,7 +37,7 @@ const [data,setData] = useState({
         toast.success(data.message)
           console.log(data)
           localStorage.setItem("bms-user",JSON.stringify(data));
-          navigate('/dashboard');
+          navigate('/overview');
 
       }catch(error){
         console.log(error)

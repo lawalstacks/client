@@ -28,11 +28,11 @@ function App(){
               <Route path='/:username' element ={<UserPage/>}/>
               <Route path='/' element={<Home/>}/>
               <Route element={user? <DashboardLayout/>: <Navigate to="/auth"/>}>
-                <Route path="dashboard" index element={<Dashboard/>}/>
+                <Route path="overview" index element={<Dashboard/>}/>
                 <Route path="publish" element={<Publish/>}/>
                 <Route path="followers" element={<Followers/>}/>
               </Route>
-              <Route path="/auth" element={user? <Navigate to="/dashboard"/> : <AuthPage/>}/>
+              <Route path="/auth" element={user? <Navigate to="/overview"/> : <AuthPage/>}/>
             </Routes>
         </>
   )
