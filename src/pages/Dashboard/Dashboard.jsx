@@ -8,9 +8,9 @@ const Dashboard = () => {
                 Overview
                 <div className="text-2xl pb-5 text-white">Welcome to your dashboard, Teekzel 👋
                 </div>
-                <div className="flex  lg:justify-evenly flex-col gap-10 lg:flex-row h-38 ">
+                <div className="flex  lg:justify-evenly lg:items-center flex-col gap-10 lg:flex-row lg:h-full ">
                     <div
-                        className="border border-shadow bg-gradient-to-r from-purple-200 to-amber-200 ... flex justify-center items-center p-2 gap-2 h-36 lg:h-full bg-opacity-60 backdrop-filter backdrop-blur-xl rounded-md">
+                        className="border border-shadow bg-gradient-to-r from-purple-200 to-amber-200 ... flex justify-center items-center p-2 gap-2  bg-opacity-60 backdrop-filter backdrop-blur-xl rounded-md">
                         <div className="flex"><img className="rounded-full border border-amber-400" width={100}
                                   src={ProfileImage}/></div>
                         <div className="flex flex-col text-black rounded-md"><p>lawal.webdesign@gmail.com</p>

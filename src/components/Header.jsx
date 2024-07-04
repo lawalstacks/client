@@ -1,9 +1,13 @@
 import {Link} from "react-router-dom";
 import Logo from '../assets/Logo.png'
 import {AiFillProfile} from "react-icons/ai";
+import LoginButton from './LoginButton.jsx';
+import LogoutButton from './LogoutButton.jsx'
+import {useRecoilValue} from 'recoil';
+import userAtom from '../atoms/userAtom.js'
 
 const Header = () => {
-
+const user = useRecoilValue(userAtom);
     return (
         <div className="flex justify-between  items-center rounded-md bg-amber-500 m-3 h-12 px-2">
             <div className="">
@@ -11,7 +15,7 @@ const Header = () => {
             </div>
             <div className="flex justify-evenly items-center">
                     <div className="hidden"><img src={<AiFillProfile/>} /></div>
-                        <button className="bg-gradient-to-r from-zinc-800 ... rounded-md hover:scale-95 hover:bg-zinc-800 transition-all text-white py-1 px-4 mx-1"><Link to="/login">Login</Link></button>
+              {user?<LogoutButton/>:""}
                         </div>
                         </div>
                         );

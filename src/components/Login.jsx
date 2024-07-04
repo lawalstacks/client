@@ -1,15 +1,37 @@
-import {Link} from "react-router-dom";
 import {useState} from "react";
 import axios  from "axios";
-
-const Login = ({setIsloggedin}) => {
+import {useSetRecoilState} from 'recoil'
+import userAtom from '../atoms/userAtom.js'
+import authScreenAtom from '../atoms/authAtom.js'
+import {useNavigate} from "react-router-dom";
+import {toast} from 'react-hot-toast';
+const Login = () => {
+    const setUser = useSetRecoilState(userAtom)
+    const setAuthScreen = useSetRecoilState(authScreenAtom);
 const [data,setData] = useState({
     email:"",
     password:""
 })
-    const loginUser =(e)=>{
+
+const navigate = useNavigate();
+    const loginUser = async(e)=>{
         e.preventDefault();
-        axios.post('');
+        const {email,password} = data;
+        try {
+            const {data} = await axios.post('/api/login', {
+                email,
+                password
+            });
+            if (data.error) {
+                toast.error("Invalid Login details")
+            }
+            localStorage.setItem("bms-data", JSON.stringify(data));
+            setUser(data);
+            toast.success(data.message)
+            console.log(data)
+        }catch(error){
+            toast.error("Invalid Login ")
+        }
     }
     return (
         <div className="flex flex-col px-2 py-4 items-center mt-10">
@@ -40,7 +62,7 @@ const [data,setData] = useState({
                     </button>
                 </form>
             </div>
-            <div className="mt-2 justify-center text-white">Not Registered? <Link className="font-bold" to='/Signup'>Join Now</Link></div>
+            <div className="mt-2 justify-center text-white">Not Registered? <span className="font-bold cursor-pointer" onClick={()=>{setAuthScreen("Signup")}}>Join Now</span></div>
         </div>
     );
 };

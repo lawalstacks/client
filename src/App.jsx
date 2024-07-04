@@ -19,20 +19,20 @@ axios.defaults.withCredentials = "true";
 
 function App(){
   const user = useRecoilValue(userAtom);
+  console.log(user);
     return(
         <>
-
+          <Toaster position="bottom-right" toastOptions={{duration: 1500}}/>
             <Header/>
-          <Toaster position="bottom-right" toastOptions={{duration: 2000}}/>
             <Routes>
               <Route path='/:username' element ={<UserPage/>}/>
               <Route path='/' element={<Home/>}/>
-              <Route element={user? <DashboardLayout/>: <Navigate to="/auth"/>}>
+              <Route element= {user?<DashboardLayout/>:<Navigate to='/auth'/>}>
                 <Route path="overview" index element={<Dashboard/>}/>
                 <Route path="publish" element={<Publish/>}/>
                 <Route path="followers" element={<Followers/>}/>
               </Route>
-              <Route path="/auth" element={user? <Navigate to="/overview"/> : <AuthPage/>}/>
+              <Route path="/auth" element={user?<Navigate to="/overview"/> :<AuthPage/>}/>
             </Routes>
         </>
   )

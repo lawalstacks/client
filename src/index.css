@@ -12,7 +12,8 @@
      background-repeat: no-repeat;
      background-size: cover;
      font-family: Poppins;
-     font-weight: 400;
+     font-weight: 300;
+     font-size: 16px;
      color: white;
      background-attachment: scroll;
      margin: 0;
@@ -27,6 +28,7 @@
  input{
      border: 1px solid;
      color: black;
+     width: 100%;
  }
  input:invalid{
      border-color: red;
@@ -37,7 +39,6 @@
 }
  .page-link{
      border: none;
-     background-color: lightgray;
      cursor: pointer;
      width: 140px;
  }
