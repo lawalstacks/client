@@ -4,21 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
+html{
+    padding: 0;
+}
+.dark{
+    background-color: #202127 ;
+}
  body{
-     background-repeat: no-repeat;
-    /*background-image: linear-gradient(to right, whitesmoke,#131217 );*/
-     background-repeat: no-repeat;
-     background-size: cover;
-     font-family: Poppins;
+     font-family: Poppins, 'Quicksand', sans-serif;
      font-weight: 300;
      font-size: 16px;
-     color: white;
      background-attachment: scroll;
      margin: 0;
      scroll-behavior: smooth;
-     background-color: #131217;
 
  }
  label{
