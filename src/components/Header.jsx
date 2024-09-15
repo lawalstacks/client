@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import Logo from '../assets/Logo.png'
-import { AiFillProfile, AiOutlineNotification, AiOutlineProfile, AiOutlineUser } from 'react-icons/ai';
+import { AiFillProfile, AiOutlineNotification, AiOutlineUser } from 'react-icons/ai';
 import LogoutButton from './LogoutButton.jsx'
 import {useRecoilValue} from 'recoil';
 import userAtom from '../atoms/userAtom.js'
@@ -15,7 +15,7 @@ const user = useRecoilValue(userAtom);
     document.body.classList.toggle("dark");
   }
     return (
-        <div className="flex justify-between fixed right-0 left-0 top-0  items-center  bg-amber-500  h-16 px-2">
+        <div className="flex justify-between fixed right-0 left-0 top-0 shadow-md items-center  bg-gradient-to-r from-fuchsia-400 to-fuchsia-200 ...  z-20 h-16 px-2">
             <div className="">
                 <Link to='/'><img width={45} src={Logo} alt="Logo"/></Link>
             </div>

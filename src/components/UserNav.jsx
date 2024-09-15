@@ -84,8 +84,6 @@ const UserNav = () => {
                 <button
                     className="hover:bg-gradient-to-r from-zinc-800 ... hover:text-white p-2  border-4 hover:scale-90 active:bg-zinc-800  border-orange-200 rounded-3xl transition-all bg-amber-500"><span className="flex justify-center items-center gap-2"><GiTakeMyMoney size={24}/>Cashout Settings</span>
                 </button>
-
-
             </div>
 
 

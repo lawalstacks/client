@@ -1,4 +1,3 @@
-import React from 'react';
 import {useSetRecoilState} from "recoil"
 import userAtom from '../atoms/authAtom.js'
 import axios from 'axios';
