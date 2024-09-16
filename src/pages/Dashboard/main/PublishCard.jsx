@@ -12,6 +12,7 @@ import animationDone from '../../../lotties/creationDone.json'
 import animationData from '../../../lotties/Cardcreated2.json'
 import { FaHandHoldingDollar } from 'react-icons/fa6';
 import Loader from '../../../assets/Pulse@1x-1.0s-200px-200px.svg';
+import PageLoader from "../../../assets/Pulse@1x-1.0s-200px-200px.svg";
 import { MdAddCircle, MdDone} from 'react-icons/md';
 const MAX_CHAR = 100;
 
@@ -23,6 +24,7 @@ const PublishCard = () => {
   const[modal, setModal] = useState(false)
   const[repeat, setRepeat] = useState(false)
   const [loading, setLoading] = useState(false);
+  const [pageLoads,setPageLoads] = useState(true)
   const[done,setDone] = useState(false)
   const [amount,setAmount] = useState(0)
   const [showTip,setShowTip] = useState(false)
@@ -32,6 +34,27 @@ const PublishCard = () => {
   const [cardColor,setCardColor] = useState("#202124");
   const [remChar, setRemChar] = useState(MAX_CHAR);
   const user = useRecoilValue(userAtom);
+
+  useEffect(()=>{
+    const getUser = async()=>{
+      try{
+        const res = await axios.get(`/api/${user._id}`)
+        if(res.error){
+          return toast.error("error loading card")
+        }
+        setReverseCards(res.data.cards.slice().reverse())
+        setCards(reverseCards)
+        console.log(reverseCards)
+      }catch(error){
+        console.log(error.response?.data.message+":"+"error to load card")
+        toast.error(error.response?.data.message+":"+"error to load card")
+        setCards(null)
+      }finally {
+        setPageLoads(false)
+      }
+    }
+    getUser();
+  },[reverseCards,user._id])
 
   const defaultOptions = {
     loop: true,
@@ -99,23 +122,7 @@ const PublishCard = () => {
       }
   }
 
-  useEffect(()=>{
-      const getUser = async()=>{
-        try{
-          const res = await axios.get(`/api/${user._id}`)
-          if(res.error){
-           return toast.error("error loading card")
-          }
-          setReverseCards(res.data.cards.slice().reverse())
-          setCards(reverseCards)
-          }catch(error){
-          console.log(error.response?.data.message+":"+"error to load card")
-            toast.error(error.response?.data.message+":"+"error to load card")
-          setCards(null)
-        }
-      }
-      getUser();
-  },[cards])
+
 
 
     return (
@@ -259,24 +266,28 @@ const PublishCard = () => {
 
         <div className="dark:text-white w-full">
           Publish Content
-          <div className="text-2xl w-full items-center flex gap-4 relative">Create New Card! <div
-            className="rounded-full bg-amber-300 flex h-6 w-6  transition-all justify-center items-center hover:bg-amber-200 hover:p-4 absolute -right-8 cursor-pointer active:p-0 active:bg-amber-400 text-black text-2xl font-bold"
+          <div className="text-2xl mb-4 w-60 relative">Create New Card! <div
+            className="rounded-full bg-amber-300 flex h-6 w-6 top-1.5 transition-all justify-center items-center hover:bg-amber-200 hover:p-4 absolute -right-1 cursor-pointer active:p-0 active:bg-amber-400 text-black text-2xl font-bold"
             onClick={() => handleRepublish()}>+</div></div>
           <div className="text-gray-500 font-md">{cards?.length === 0 ? "Your Content is Empty" : "Looks Good"} </div>
           <div>
+            {pageLoads? <div className="flex justify-center items-center pr-10"> <img className="h-48" src={PageLoader}/></div>:
             <div className="grid grid-cols-3 flex-row-reverse text-dark-tremor-background">
               {cards?.map((card,index)=> (
                 <div className="bg-dark p-2" key={index}>
-                  <div className="flex flex-col gap-2 p-3 border rounded-lg shadow-lg  my-3" style={{background:`${card.color}`}}>
+                  <div className="flex flex-col gap-2 p-2 border rounded-xl text-amber-500 font-md shadow-lg h-80" style={{background:`${card.color}`}}>
                    <p>{card.title}</p>
                     <p>{card.details}</p>
                     {card.media?.endsWith('/cardMedia.jpg')?"its here":"no"}
-                    <img height={200} src={card.media}/>
+                    <div className="h-48 flex justify-center items-center border rounded-lg overflow-hidden p-2">
+                      <img className="object-cover rounded-md" src={card.media} />
+                    </div>
+
                   </div>
                 </div>
               ))}
 
-            </div>
+            </div>}
           </div>
         </div>
       </>

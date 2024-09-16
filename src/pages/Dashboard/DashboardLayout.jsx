@@ -17,7 +17,6 @@ const DashboardLayout = () => {
             <Outlet />
           </main>
         </div>
-        <div className="flex justify-center items-center mt-10 bottom-0 ">Copyright@2024 boostmysteeze by krazla LLC</div>
       </>
     );
 };
