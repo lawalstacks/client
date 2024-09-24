@@ -13,7 +13,22 @@ import animationData from '../../../lotties/Cardcreated2.json'
 import { FaHandHoldingDollar } from 'react-icons/fa6';
 import Loader from '../../../assets/Pulse@1x-1.0s-200px-200px.svg';
 import PageLoader from "../../../assets/Pulse@1x-1.0s-200px-200px.svg";
-import { MdAddCircle, MdDone} from 'react-icons/md';
+import {
+  MdAddCircle,
+  MdDone,
+  MdGroups,
+  MdSettings, MdSettingsAccessibility,
+  MdSettingsApplications,
+  MdShare,
+  MdSupervisedUserCircle,
+} from 'react-icons/md';
+import { AiFillHdd, AiTwotoneSetting } from 'react-icons/ai';
+import { GrAidOption } from 'react-icons/gr';
+import { IoMdOptions } from 'react-icons/io';
+import View from '../../../assets/view.png';
+import Delete from '../../../assets/trash.png';
+import Edit from '../../../assets/edit.png';
+import Share from '../../../assets/send.png'
 const MAX_CHAR = 100;
 
 const PublishCard = () => {
@@ -44,7 +59,6 @@ const PublishCard = () => {
         }
         setReverseCards(res.data.cards.slice().reverse())
         setCards(reverseCards)
-        console.log(reverseCards)
       }catch(error){
         console.log(error.response?.data.message+":"+"error to load card")
         toast.error(error.response?.data.message+":"+"error to load card")
@@ -102,8 +116,10 @@ const PublishCard = () => {
         details: postText,
         color: cardColor,
         media: fileUrl,
-        goalAmount: amount
+        fileType:fileType,
+        goalAmount: amount,
       })
+      console.log(fileType);
       if (response.error){
         toast.error(response.error.message)
       }
@@ -123,11 +139,9 @@ const PublishCard = () => {
   }
 
 
-
-
     return (
       <>
-        <div  className={modal?"fixed top-0 bottom-0 left-0 text-black backdrop-filter z-20 bg-opacity-50 bg-black right-0":"hidden"}>
+        <div  className={modal?"fixed top-0 bottom-0 overflow-y-scroll left-0 text-black backdrop-filter z-20 bg-opacity-50 bg-black right-0":"hidden"}>
           {repeat?<div className="rounded-md mx-auto flex flex-col gap-4  py-5 items-center mt-8"><p className="text-white font-bold text-3xl ">Card created Successfully!</p>
             <div className="relative right-5"
             >
@@ -147,7 +161,7 @@ const PublishCard = () => {
             </div>
 
           </div> : <div style={{ background: `${cardColor}` }}
-                        className={`  rounded-md mx-auto flex flex-col gap-4 max-w-96 py-5 px-5 items-center mt-8`}>
+                        className={`  rounded-md mx-auto flex flex-col gap-4 max-w-96 py-5 px-5 justify-center items-center mt-8`}>
           <div className="">
               <div className="h-6 flex-row-reverse flex">
                 <div
@@ -156,7 +170,6 @@ const PublishCard = () => {
                 </div>
               </div>
                 <form onSubmit={handleCreateCard}>
-
                   <label
                     className="mt-10 border bg-white backdrop-filter bg-opacity-60 px-2 font-bold rounded-xl">Title</label>
                   <input
@@ -176,6 +189,7 @@ const PublishCard = () => {
                     className="rounded-md border border-gray-400 flex mt-2 w-full"
                     rows={3.5}
                     required
+                    minLength={100}
                     maxLength={MAX_CHAR}
                     id="details"
                     name="details"
@@ -263,31 +277,204 @@ const PublishCard = () => {
             </div> : ''}
           </div>
         </div>
-
-        <div className="dark:text-white w-full">
+        <div className="dark:text-white">
           Publish Content
           <div className="text-2xl mb-4 w-60 relative">Create New Card! <div
-            className="rounded-full bg-amber-300 flex h-6 w-6 top-1.5 transition-all justify-center items-center hover:bg-amber-200 hover:p-4 absolute -right-1 cursor-pointer active:p-0 active:bg-amber-400 text-black text-2xl font-bold"
+            className="rounded-full bg-amber-300 flex h-6 w-6 top-1.5 transition-all justify-center items-center hover:bg-amber-200 hover:p-4 absolute right-1 cursor-pointer active:p-0 active:bg-amber-400 text-black text-2xl font-bold"
             onClick={() => handleRepublish()}>+</div></div>
           <div className="text-gray-500 font-md">{cards?.length === 0 ? "Your Content is Empty" : "Looks Good"} </div>
-          <div>
-            {pageLoads? <div className="flex justify-center items-center pr-10"> <img className="h-48" src={PageLoader}/></div>:
-            <div className="grid grid-cols-3 flex-row-reverse text-dark-tremor-background">
-              {cards?.map((card,index)=> (
-                <div className="bg-dark p-2" key={index}>
-                  <div className="flex flex-col gap-2 p-2 border rounded-xl text-amber-500 font-md shadow-lg h-80" style={{background:`${card.color}`}}>
-                   <p>{card.title}</p>
-                    <p>{card.details}</p>
-                    {card.media?.endsWith('/cardMedia.jpg')?"its here":"no"}
-                    <div className="h-48 flex justify-center items-center border rounded-lg overflow-hidden p-2">
-                      <img className="object-cover rounded-md" src={card.media} />
+          <div className="">
+            {pageLoads ?
+              <div className="grid grid-cols-3 flex-row-reverse animate-pulse">
+                <div className="bg-dark p-2">
+                  <div className="flex flex-col gap-2 p-3 border bg-slate-600 rounded-xl w-72 shadow-lg h-80">
+                    <div className="flex gap-2 items-center">
+                      <div className="rounded-full bg-slate-500 h-10 w-10"></div>
+                      <div className="bg-slate-500 w-16 h-5 rounded-md "></div>
                     </div>
+                    <p></p>
+                    <p className="w-64 rounded-md h-4 bg-slate-500"></p>
+                    <p className="w-56 h-4 rounded-md bg-slate-500"></p>
+                    <p className="w-32 h-4 bg-slate-500 rounded-md"></p>
+
+                    <div
+                      className="h-40 flex justify-center items-center bg-slate-500  rounded-lg w-full p-2">
+                    </div>
+                    <div className="flex justify-between">
+                      <div></div>
+                      <div></div>
+                    </div>
+                    <button className="mx-auto bg-slate-500 rounded-md w-40 h-5"></button>
 
                   </div>
                 </div>
-              ))}
+                <div className="bg-dark p-2">
+                  <div className="flex flex-col gap-2 p-3 border bg-slate-600 rounded-xl w-72 shadow-lg h-80">
+                    <div className="flex items-center gap-2">
+                      <div className="rounded-full bg-slate-500 h-10 w-10"></div>
+                      <div className="bg-slate-500 w-16 h-5 rounded-md "></div>
+                    </div>
+                    <p></p>
+                    <p className="w-64 rounded-md h-4 bg-slate-500"></p>
+                    <p className="w-56 h-4 rounded-md bg-slate-500"></p>
+                    <p className="w-32 h-4 bg-slate-500 rounded-md"></p>
+                    <div
+                      className="h-40 flex justify-center items-center bg-slate-500  rounded-lg w-full p-2">
+                    </div>
+                    <div className="flex justify-between">
+                      <div></div>
+                      <div></div>
+                    </div>
+                    <button className="mx-auto bg-slate-500 rounded-md w-40 h-5"></button>
 
-            </div>}
+                  </div>
+                </div>
+                <div className="bg-dark p-2">
+                  <div className="flex flex-col gap-2 p-3 border bg-slate-600 rounded-xl w-72 shadow-lg h-80">
+                    <div className="flex gap-2">
+                      <div className="rounded-full bg-slate-500 h-6 w-6"></div>
+                      <div className="bg-slate-500 w-16 h-5 rounded-md "></div>
+                    </div>
+                    <p></p>
+                    <p className="w-64 rounded-md h-4 bg-slate-500"></p>
+                    <p className="w-56 h-4 rounded-md bg-slate-500"></p>
+                    <p className="w-32 h-4 bg-slate-500 rounded-md"></p>
+
+                    <div
+                      className="h-40 flex justify-center items-center bg-slate-500  rounded-lg w-full p-2">
+                    </div>
+                    <div className="flex justify-between">
+                      <div></div>
+                      <div></div>
+                    </div>
+                    <button className="mx-auto bg-slate-500 rounded-md w-40 h-5"></button>
+
+                  </div>
+                </div>
+                <div className="bg-dark p-2">
+                  <div className="flex flex-col gap-2 p-3 border bg-slate-600 rounded-xl w-72 shadow-lg h-80">
+                    <div className="flex gap-2 items-center">
+                      <div className="rounded-full bg-slate-500 h-10 w-10"></div>
+                      <div className="bg-slate-500 w-16 h-5 rounded-md "></div>
+                    </div>
+                    <p></p>
+                    <p className="w-64 rounded-md h-4 bg-slate-500"></p>
+                    <p className="w-56 h-4 rounded-md bg-slate-500"></p>
+                    <p className="w-32 h-4 bg-slate-500 rounded-md"></p>
+
+                    <div
+                      className="h-40 flex justify-center items-center bg-slate-500  rounded-lg w-full p-2">
+                    </div>
+                    <div className="flex justify-between">
+                      <div></div>
+                      <div></div>
+                    </div>
+                    <button className="mx-auto bg-slate-500 rounded-md w-40 h-5"></button>
+
+                  </div>
+                </div>
+                <div className="bg-dark p-2">
+                  <div className="flex flex-col gap-2 p-3 border bg-slate-600 rounded-xl w-72 shadow-lg h-80">
+                    <div className="flex items-center  gap-2">
+                      <div className="rounded-full bg-slate-500 h-10 w-10"></div>
+                      <div className="bg-slate-500 w-16 h-5 rounded-md "></div>
+                    </div>
+                    <p></p>
+                    <p className="w-64 rounded-md h-4 bg-slate-500"></p>
+                    <p className="w-56 h-4 rounded-md bg-slate-500"></p>
+                    <p className="w-32 h-4 bg-slate-500 rounded-md"></p>
+
+                    <div
+                      className="h-40 flex justify-center items-center bg-slate-500  rounded-lg w-full p-2">
+                    </div>
+                    <div className="flex justify-between">
+                      <div></div>
+                      <div></div>
+                    </div>
+                    <button className="mx-auto bg-slate-500 rounded-md w-40 h-5"></button>
+
+                  </div>
+                </div>
+                <div className="bg-dark p-2 rounded">
+                  <div className="flex flex-col gap-2 p-3 border bg-slate-600 rounded w-80 shadow-lg h-80">
+                    <div className="flex items-center gap-2">
+                      <div className="rounded-full bg-slate-500 h-10 w-10"></div>
+                      <div className="bg-slate-500 w-16 h-5 rounded-md "></div>
+                    </div>
+                    <p></p>
+                    <p className="w-64 rounded-md h-4 bg-slate-500"></p>
+                    <p className="w-56 h-4 rounded-md bg-slate-500"></p>
+                    <p className="w-32 h-4 bg-slate-500 rounded-md"></p>
+                    <div
+                      className="h-40 flex justify-center items-center bg-slate-500  rounded-lg w-full p-2">
+                    </div>
+                    <div className="flex justify-between">
+                      <div></div>
+                      <div></div>
+                    </div>
+                    <button className="mx-auto bg-slate-500 rounded-md w-40 h-5"></button>
+
+                  </div>
+                </div>
+              </div>
+              :
+              <div className="masonry sm:masonry-sm md:masonry-md mt-2 rounded flex-row-reverse text-dark-tremor-background">
+                {cards?.map((card, index) => (
+                  <div className="bg-dark p-2 break-inside" key={index}>
+                    <div className="flex flex-col gap-2 p-2 border-2 rounded-2xl  text-amber-500 font-md drop-shadow-xl"
+                         style={{ background: `${card.color}` }}>
+                      <div className="flex gap-2 items-center">
+                        <div className="rounded-full"><MdSupervisedUserCircle size={48} /></div>
+                        <div className="text-slate-500 font-sans">{user?.username}</div>
+                      </div>
+                      <div className="font-bold text-lg text-white px-2 rounded-3xl  bg-opacity-45 bg-dark-tremor-background-subtle flex w-max"><p>{card.title}</p></div>
+                      <textarea
+                        className="mt-2 text-left bg-fuchsia-100 bg-opacity-60 overflow-clip px-2 text-md font-medium flex pb-[75px] text-dark-tremor-background border-none pointer-events-none rounded border-2"
+                        value={card.details}>
+                      </textarea>
+                      {
+                        card.fileType !== ""&&
+                        <div
+                        style={{'--image-url': `url(${"https://img.freepik.com/free-vector/hand-drawn-doodle-icons-set_1308-90706.jpg?t=st=1727043640~exp=1727047240~hmac=fcaa84f041a28f11d7042adfa6e4cc4e6f33da7469661b2cd651821defa73fb8&w=740"})`}}
+                        className="flex justify-center items-center rounded-lg bg-[image:var(--image-url)]  relative overflow-hidden p-2">
+                        <div className="bg-black bg-opacity-80 absolute top-0 bottom-0 left-0 right-0"></div>
+                        <div className="z-10 flex  transition-all">
+                        {card.fileType?.startsWith('video/') ?
+                          <video className="object-fit rounded-md h-60" src={card.media} controls autoPlay={false} /> :
+                          <img className="object-cover flex cursor-pointer rounded-md" src={card.media} />}
+                        </div>
+                      </div>
+                      }
+                      <div
+                        className="mx-auto border-2 bg-gradient-to-r from-fuchsia-300 ... rounded-3xl  items-center mt-4 flex gap-2 justify-center  text-white py-1 w-full">
+
+                        <div className="h-6 w-10  group relative">
+                          <img className="h-6 hover:h-8 active:h-6 cursor-pointer" src={Delete} />
+                          <span
+                            className=" -left-3 absolute -top-10 scale-0 transition-all rounded bg-gray-800 w-max p-2 text-xs text-white group-hover:scale-100">Delete</span>
+                        </div>
+                        <div className="h-6 w-10 relative group">
+                          <img className="h-6 hover:h-8 active:h-6 cursor-pointer" src={View} />
+                          <span
+                            className="-left-2 absolute -top-10 scale-0 transition-all rounded bg-gray-800 w-max p-2 text-xs text-white group-hover:scale-100">View</span>
+                        </div>
+                        <div className="h-6 w-10 group relative">
+                          <img className="h-6  hover:h-8 active:h-6 cursor-pointer" src={Edit} />
+                          <span
+                            className="-left-1 absolute -top-10 scale-0 transition-all rounded bg-gray-800 w-max p-2 text-xs text-white group-hover:scale-100">Edit</span>
+                        </div>
+                        <div className="h-6 w-10 group relative">
+                          <img className="h-6 hover:h-8 active:h-6 cursor-pointer animate-bounce" src={Share} />
+                          <span
+                            className="-left-3 absolute -top-10 scale-0 transition-all rounded bg-gray-800 w-max p-2 text-xs text-white group-hover:scale-100">Share ✨</span>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+              </div>}
           </div>
         </div>
       </>

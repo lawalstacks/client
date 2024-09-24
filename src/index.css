@@ -5,14 +5,65 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    @variants responsive {
+        .masonry {
+            column-gap: 0;
+            column-count: 1;
+        }
+        .masonry-sm {
+            column-gap: 0;
+            column-count: 2;
+        }
+        .masonry-md {
+            column-gap: 0;
+            column-count: 3;
+        }
+        .break-inside {
+            break-inside: avoid;
+        }
+        .grid-lines {
+            border-right: 1px solid #FCD553;
+            border-bottom: 1px solid #EA83FA;
+            padding: 0.5em;
+        }
+        .grid-lines:last-child {
+            border-right: none;
+        }
+
+    }
+}
+
 html{
     padding: 0;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #FCD553;
+    border-radius: 3px;
+    width: 3px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #EA83FA;
+    border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #F5D0FE;
 }
 .dark{
     background-color: #202127 ;
 }
  body{
-     font-family: WorkSans, 'Poppins', sans-serif;
+     font-family: Poppins, sans-serif;
      font-weight: 300;
      font-size: 16px;
      background-attachment: scroll;

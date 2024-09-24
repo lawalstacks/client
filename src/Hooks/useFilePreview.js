@@ -20,6 +20,7 @@ const UseFilePreview = () => {
       }else {
         toast.error("invalid file type")
         setFileUrl(null)
+        return;
       }
     }
   }

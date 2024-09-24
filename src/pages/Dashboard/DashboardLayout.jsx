@@ -13,7 +13,7 @@ const DashboardLayout = () => {
         </div>
         <div className='lg:mt-20 flex px-10 h-screen'>
           <UserNav />
-          <main className="lg:ml-80 mx-auto">
+          <main className="lg:ml-80 mx-auto ">
             <Outlet />
           </main>
         </div>
