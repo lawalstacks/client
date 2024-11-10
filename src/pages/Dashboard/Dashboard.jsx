@@ -12,7 +12,6 @@ import { TiTimes } from 'react-icons/ti';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-
 const Dashboard = () => {
   const [userId, setUserId] = useRecoilState(userAtom)
   const [user, setUser] = useState({})
@@ -48,7 +47,6 @@ const Dashboard = () => {
     }
   ])
   const [showOption,setShowOption] = useState(null)
-
 
   const chartdata = [
     {
@@ -127,7 +125,7 @@ const Dashboard = () => {
           data={chartdata}
           index="date"
           yAxisWidth={65}
-          categories={['SolarPanels', 'Inverters']}
+          categories={['SolarPanels', 'Inverters']}T
           colors={['indigo', 'cyan']}
           valueFormatter={valueFormatter}
         />
@@ -153,7 +151,7 @@ const Dashboard = () => {
       }
     }
     getUser();
-  },[user,userId._id])
+  },[userId])
 
 
   return (
@@ -215,9 +213,9 @@ const Dashboard = () => {
                     </div>
                 }
                   {user?.username?
-          <p className="font-bold  flex   text-black text-4xl">$34,567<span
+          <p className="font-bold  flex   text-black text-4xl">${user?.balance}<span
             className="pl-3 align-center flex justinpm run devfy-center items-center text-[8px] text-Quicksand font-bold text-cyan-900 italic"><span
-            className="text-sm">⚡</span></span>
+            className="text-sm">⚡</span>x1000 Steeze</span>
           </p>
                     :
                     <div className="space-y-1 flex-col">
@@ -296,7 +294,7 @@ const Dashboard = () => {
                       <div
                         className="flex p-2 shadow-md bg-gradient-to-r from-amber-300 to-amber-100 ... border text-tremor-default text-tremor-content dark:text-dark-tremor-content rounded-2xl justify-between items-center">No
                         of cards<span
-                          className="text-dark-tremor-content-inverted font-bold ml-5 text-xl">5</span></div>
+                          className="text-dark-tremor-content-inverted font-bold ml-5 text-xl">{user.supporters.length}</span></div>
                     </div>
                   </div>
                   :
@@ -312,7 +310,7 @@ const Dashboard = () => {
                           <div
                             className="flex p-2 shadow-md bg-gradient-to-r from-amber-300 to-amber-100 ... border text-tremor-default text-tremor-content dark:text-dark-tremor-content rounded-2xl justify-between items-center">No
                             of cards<span
-                              className="text-dark-tremor-content-inverted font-bold ml-5 text-xl">5</span></div>
+                              className="text-dark-tremor-content-inverted font-bold ml-5 text-xl">{user?.cards.length}</span></div>
                           :
                           <div
                             className="flex animate-pulse bg-slate-600 gap-4 justify-between p-3 rounded-xl">

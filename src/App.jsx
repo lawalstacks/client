@@ -16,7 +16,7 @@ import {Toaster} from 'react-hot-toast';
 import ResetPassword from './components/ResetPassword.jsx';
 
 
-axios.defaults.baseURL= "http://localhost:8000";
+axios.defaults.baseURL= "http://localhost:8080";
 axios.defaults.withCredentials = true;
 
 function App(){

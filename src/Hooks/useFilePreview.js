@@ -6,7 +6,6 @@ const UseFilePreview = () => {
   const [fileType,setFileType] = useState("")
   const handleFileChange = (e)=>{
     const file = e.target.files[0];
-
     if(file){
       if(file.type.startsWith("image/") || file.type.startsWith("video/")){
 
